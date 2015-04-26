@@ -59,9 +59,22 @@ function bellmanFord(edges, source, destination) {
 
   }
 
+  // Negative cycle check
   var nocycle = true;
+  var lastIteration = solutions[solutions.length - 1];
+  var penultimateIteration = solutions[solutions.length - 2];
 
-  return nocycle ? solutions[solutions.length - 2][destination] : undefined;
+  for(var i = 0; i < verticesNames.length; i++) {
+    var cv = verticesNames[i];
+
+    if(lastIteration[cv] != penultimateIteration[cv]) {
+      nocycle = false;
+      break;
+    }
+
+  }
+
+  return nocycle ? penultimateIteration[destination] : undefined;
 }
 
 
