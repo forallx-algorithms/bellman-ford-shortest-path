@@ -1,5 +1,5 @@
 /*
-  Bellman Ford algorithm computes shortest path distance of a weighted directed graph in O(m*n)
+  Bellman Ford algorithm computes shortest path distance of a weighted directed graph from vertex s to destination v in O(m*n)
 
   @author Evgeniy Kuznetsov
   @date 26.04.2015
@@ -9,7 +9,7 @@
 // @param {Edges} edges
 // @param {Vertex} source
 // @param {Vertex} destination
-// @return {Integer|undefined} Integer - length of a path, undefined - graph has negative cycle
+// @return {Integer|undefined} Integer - length of a path, undefined - graph has a negative cycle
 function bellmanFord(edges, source, destination) {
 
   var vertices = calculateVertices(edges);
@@ -61,8 +61,8 @@ function bellmanFord(edges, source, destination) {
 
   // Negative cycle check
   var nocycle = true;
-  var lastIteration = solutions[solutions.length - 1];
   var penultimateIteration = solutions[solutions.length - 2];
+  var lastIteration = solutions[solutions.length - 1];
 
   for(var i = 0; i < verticesNames.length; i++) {
     var cv = verticesNames[i];
@@ -127,4 +127,4 @@ var edgesWithNegCycle = [
 ];
 
 console.log("Case 1:", bellmanFord(edges, 1, 5) == 6, bellmanFord(edges, 1, 5));
-console.log("Case 2:", bellmanFord(edgesWithNegCycle, 1, 5) == undefined, bellmanFord(edges, 1, 5));
+console.log("Case 2:", bellmanFord(edgesWithNegCycle, 1, 5) == undefined, bellmanFord(edgesWithNegCycle, 1, 5));
